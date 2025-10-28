@@ -29,20 +29,22 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy app source
+# Copy application source code
 COPY . /var/www/html
 
-# Install Laravel dependencies (skip dev)
+# Install Laravel dependencies (skip dev packages)
 RUN composer install --no-dev --optimize-autoloader --no-interaction || true
 
-# Fix Laravel file permissions
+# Fix file and directory permissions for Laravel
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Configure Apache to point to Laravel's public directory
-RUN echo '<VirtualHost *:8080>\n\
+# Configure Apache to serve Laravel public directory properly
+RUN echo '<VirtualHost *:80>\n\
+    ServerName localhost\n\
     DocumentRoot /var/www/html/public\n\
     <Directory /var/www/html/public>\n\
+        Options +Indexes +FollowSymLinks\n\
         AllowOverride All\n\
         Require all granted\n\
     </Directory>\n\
@@ -50,8 +52,11 @@ RUN echo '<VirtualHost *:8080>\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# Expose port 8080 for DigitalOcean
-EXPOSE 8080
+# Enable Laravel routing (mod_rewrite)
+RUN a2enmod rewrite
 
-# Start Apache
+# Expose port 80 (DigitalOcean maps external traffic to this)
+EXPOSE 80
+
+# Start Apache server in the foreground
 CMD ["apache2-foreground"]
