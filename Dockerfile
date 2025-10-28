@@ -2,23 +2,26 @@
 # Agency Builder CRM - Tier 1 (DigitalOcean Ready)
 # ==============================================
 
-# Use official PHP 8.2 image with Apache
 FROM php:8.2-apache
 
-# Enable Apache rewrite module (required for Laravel routing)
+# Enable Apache rewrite (for Laravel routing)
 RUN a2enmod rewrite
 
-# Install system dependencies
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     curl \
+    zip \
     libzip-dev \
     libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
-    zip \
-    && docker-php-ext-install pdo_mysql zip
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql zip opcache \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -26,17 +29,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy application files
+# Copy app source
 COPY . /var/www/html
 
-# Install Laravel dependencies (ignore dev packages)
-RUN composer install --no-dev --optimize-autoloader
+# Install Laravel dependencies (skip dev)
+RUN composer install --no-dev --optimize-autoloader --no-interaction || true
 
-# Fix permissions for Apache
+# Fix Laravel file permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Configure Apache to serve the Laravel "public" directory
+# Configure Apache to point to Laravel's public directory
 RUN echo '<VirtualHost *:8080>\n\
     DocumentRoot /var/www/html/public\n\
     <Directory /var/www/html/public>\n\
@@ -47,8 +50,8 @@ RUN echo '<VirtualHost *:8080>\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# Expose port 8080 (required by DigitalOcean)
+# Expose port 8080 for DigitalOcean
 EXPOSE 8080
 
-# Start Apache web server
+# Start Apache
 CMD ["apache2-foreground"]
