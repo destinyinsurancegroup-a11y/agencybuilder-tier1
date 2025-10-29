@@ -28,10 +28,11 @@
             transition: all 0.3s ease;
         }
 
+        /* ✅ Updated: Bigger logo, no glow */
         .sidebar img {
-            width: 140px;
+            width: 280px; /* was 140px — 200% larger */
             margin-bottom: 20px;
-            filter: drop-shadow(0 0 4px rgba(201,164,76,0.6));
+            filter: none; /* removed glow */
         }
 
         .sidebar h2 {
@@ -140,7 +141,7 @@
 <body>
     <div class="sidebar">
         <!-- Agency Builder CRM Logo -->
-        <img src="/assets/images/logo.png" alt="Agency Builder Logo" onerror="this.src='https://via.placeholder.com/140x140?text=Logo'">
+        <img src="/assets/images/logo.png" alt="Agency Builder Logo" onerror="this.src='https://via.placeholder.com/280x280?text=Logo'">
         <h2>Agency Builder</h2>
 
         <div class="nav-item active">🏠 Dashboard</div>
@@ -177,3 +178,4 @@
     </div>
 </body>
 </html>
+
