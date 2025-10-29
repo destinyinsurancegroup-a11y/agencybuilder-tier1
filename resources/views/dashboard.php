@@ -1,9 +1,9 @@
 <?php
-// Agency Builder CRM - Tier 1 Dashboard
+// Agency Builder CRM - Tier 1 Dashboard (Corrected Layout)
 date_default_timezone_set('America/Detroit');
 
 $hour = (int)date('H');
-$agentName = "Agent"; // later, dynamically pull from login session
+$agentName = "Agent"; // You can make this dynamic later
 $greeting = ($hour < 12) ? "Good Morning, $agentName 👋" : (($hour < 18) ? "Good Afternoon, $agentName 👋" : "Good Evening, $agentName 👋");
 $currentTime = date('l, F j, Y — g:i A');
 ?>
@@ -16,18 +16,18 @@ $currentTime = date('l, F j, Y — g:i A');
 :root {
   --gold: #D4AF37;
   --cream: #fffdf7;
-  --dark: #111;
   --light: #f8f8f8;
+  --dark: #111;
   --border: #e7e3cc;
 }
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  height: 100vh;
   background: var(--cream);
   color: var(--dark);
   overflow: hidden;
-  display: flex;
-  height: 100vh;
 }
 
 /* Sidebar */
@@ -38,7 +38,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 30px 20px;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.4);
+  box-shadow: 3px 0 10px rgba(0,0,0,0.4);
 }
 .sidebar img {
   width: 130px;
@@ -59,10 +59,11 @@ body {
   margin-bottom: 8px;
   border-radius: 6px;
   display: block;
-  transition: 0.3s;
   border: 1px solid #333;
+  transition: 0.3s;
 }
-.nav-item:hover, .nav-item.active {
+.nav-item:hover,
+.nav-item.active {
   background: var(--gold);
   color: #111;
 }
@@ -122,7 +123,7 @@ body {
   font-weight: bold;
 }
 
-/* Cards */
+/* Dashboard Cards */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -170,6 +171,7 @@ body {
 </head>
 <body>
 
+<!-- ✅ SINGLE SIDEBAR (fixed duplication issue) -->
 <div class="sidebar">
   <img src="/assets/images/logo.png" alt="Agency Builder Logo">
   <h2>Agency Builder</h2>
@@ -185,6 +187,7 @@ body {
   <a href="logout.php" class="nav-item">🚪 Logout</a>
 </div>
 
+<!-- ✅ MAIN DASHBOARD CONTENT -->
 <div class="main">
   <div class="dashboard-header">
     <div>
