@@ -1,51 +1,29 @@
 <?php
-// -------------------------------------------------------------
-// Agency Builder CRM (Tier 1) — Minimal Router (no framework)
-// -------------------------------------------------------------
-$routes = [
-    'dashboard'         => 'dashboard.php',
-    'all-contacts'      => 'all_contacts.php',
-    'book-of-business'  => 'book_of_business.php',
-    'leads'             => 'leads.php',
-    'service'           => 'service.php',
-    'calendar-activity' => 'calendar_activity.php',
-    'activity'          => 'activity.php',
-    'billing'           => 'billing.php',
-    'settings'          => 'settings.php',
-    'logout'            => 'logout.php',
-];
+/**
+ * Agency Builder CRM - Tier 1
+ * Clean Index Entry Point (no layout.php dependency)
+ */
 
-$labels = [
-    'dashboard'         => 'Dashboard',
-    'all-contacts'      => 'All Contacts',
-    'book-of-business'  => 'Book of Business',
-    'leads'             => 'Leads',
-    'service'           => 'Service',
-    'calendar-activity' => 'Calendar / Activity',
-    'activity'          => 'Activity',
-    'billing'           => 'Billing',
-    'settings'          => 'Settings',
-    'logout'            => 'Logout',
-];
+// Set timezone
+date_default_timezone_set('America/Detroit');
 
-$tab = $_GET['tab'] ?? 'dashboard';
-if (!array_key_exists($tab, $routes)) {
-    $tab = 'dashboard';
+// Define path constants
+$basePath = realpath(__DIR__ . '/../');
+$viewsPath = $basePath . '/resources/views/';
+
+// Get requested page (if any)
+$page = $_GET['page'] ?? 'dashboard';
+
+// Sanitize input
+$page = preg_replace('/[^a-zA-Z0-9_-]/', '', $page);
+
+// Resolve path to the requested view
+$targetFile = $viewsPath . $page . '.php';
+
+// If the requested view exists, load it
+if (file_exists($targetFile)) {
+    include($targetFile);
+} else {
+    // Fallback to dashboard if page not found
+    include($viewsPath . 'dashboard.php');
 }
-
-$page_title = $labels[$tab];
-
-$viewFile = __DIR__ . "/../resources/views/{$routes[$tab]}";
-if (!file_exists($viewFile)) {
-    http_response_code(404);
-    echo "View not found";
-    exit;
-}
-
-// Render view into buffer:
-ob_start();
-include $viewFile;     // each view prints its content (no <html> wrapper)
-$body = ob_get_clean();
-
-// Layout will use: $page_title, $tab, $body
-include __DIR__ . "/../resources/views/layout.php";
