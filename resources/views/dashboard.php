@@ -38,8 +38,8 @@ body {
 }
 
 .sidebar img {
-  width: 150px;
-  margin-bottom: 25px;
+  width: 140px;
+  margin-bottom: 20px;
   filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
 }
 
@@ -63,7 +63,8 @@ body {
   transition: 0.3s;
 }
 
-.nav-item:hover, .nav-item.active {
+.nav-item:hover,
+.nav-item.active {
   background-color: var(--gold);
   color: var(--dark);
 }
@@ -77,11 +78,12 @@ body {
   flex-direction: column;
 }
 
+/* --- Header --- */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .header h1 {
@@ -126,8 +128,9 @@ body {
 /* --- Dashboard Cards --- */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
+  margin-top: 20px;
 }
 
 .card {
@@ -146,12 +149,12 @@ body {
 }
 
 .card h2 {
-  font-size: 20px;
+  font-size: 18px;
   color: var(--dark);
   margin-top: 0;
   border-bottom: 2px solid var(--gold);
   padding-bottom: 6px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .card ul {
@@ -166,88 +169,91 @@ body {
   color: var(--gray);
 }
 
-/* --- Footer Note --- */
+/* --- Footer --- */
 .footer {
   margin-top: 40px;
   font-size: 13px;
   text-align: center;
   color: #888;
+  padding-bottom: 20px;
 }
 </style>
 </head>
 
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <img src="/assets/images/logo.png" alt="Agency Builder Logo">
-    <h2>Agency Builder</h2>
-    <div class="nav-item active">🏠 Dashboard</div>
-    <div class="nav-item">👥 All Contacts</div>
-    <div class="nav-item">📘 Book of Business</div>
-    <div class="nav-item">💬 Leads</div>
-    <div class="nav-item">🧰 Service</div>
-    <div class="nav-item">📅 Calendar</div>
-    <div class="nav-item">📊 Activity</div>
-    <div class="nav-item">⚙️ Settings</div>
-    <div class="nav-item">🚪 Logout</div>
-  </aside>
 
-  <!-- Main -->
-  <main class="main">
-    <div class="header">
-      <div>
-        <h1>CRM Dashboard</h1>
-        <div class="greeting">Good Morning, Agent 👋</div>
-      </div>
+<!-- Sidebar -->
+<aside class="sidebar">
+  <img src="/assets/images/logo.png" alt="Agency Builder Logo">
+  <h2>Agency Builder</h2>
+  <div class="nav-item active">🏠 Dashboard</div>
+  <div class="nav-item">👥 All Contacts</div>
+  <div class="nav-item">📘 Book of Business</div>
+  <div class="nav-item">💬 Leads</div>
+  <div class="nav-item">🧰 Service</div>
+  <div class="nav-item">📅 Calendar / Activity</div>
+  <div class="nav-item">📊 Activity</div>
+  <div class="nav-item">💳 Billing</div>
+  <div class="nav-item">⚙️ Settings</div>
+  <div class="nav-item">🚪 Logout</div>
+</aside>
 
-      <form class="search-bar">
-        <input type="text" placeholder="Search by name, phone, or email...">
-        <button type="submit">🔍</button>
-      </form>
+<!-- Main Dashboard -->
+<main class="main">
+  <div class="header">
+    <div>
+      <h1>CRM Dashboard</h1>
+      <div class="greeting">Good Morning, Agent 👋</div>
     </div>
 
-    <!-- Dashboard Cards -->
-    <div class="dashboard-grid">
-      <div class="card">
-        <h2>📈 Current Production</h2>
-        <ul>
-          <li><strong>Today:</strong> 3 calls / 2 answered / 0 stops</li>
-          <li><strong>Week:</strong> 15 calls / 12 answered / 3 pres / 1 sale</li>
-          <li><strong>Month:</strong> 5 apps / $3,800 premium</li>
-          <li><strong>Annualized Premium:</strong> $45,600</li>
-        </ul>
-      </div>
+    <form class="search-bar">
+      <input type="text" placeholder="Search by name, phone, or email...">
+      <button type="submit">🔍</button>
+    </form>
+  </div>
 
-      <div class="card">
-        <h2>📅 Upcoming Appointments</h2>
-        <ul>
-          <li>Tomorrow — John Doe (Policy Review)</li>
-          <li>Friday — Sarah Lee (New Client)</li>
-          <li>Monday — Team Meeting</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>🌟 Today’s Insights</h2>
-        <ul>
-          <li>🎂 <strong>Birthdays:</strong> 2 upcoming this week</li>
-          <li>💍 <strong>Anniversaries:</strong> None in next 10 days</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>🆕 Recently Added Contacts</h2>
-        <ul>
-          <li>James Carter — Added today</li>
-          <li>Alicia Barnes — Added 2 days ago</li>
-          <li>Henry Wilson — Added 4 days ago</li>
-        </ul>
-      </div>
+  <div class="dashboard-grid">
+    <div class="card">
+      <h2>📈 Current Production</h2>
+      <ul>
+        <li><strong>Today:</strong> 3 calls / 2 answered / 0 stops</li>
+        <li><strong>Week:</strong> 15 calls / 12 answered / 3 pres / 1 sale</li>
+        <li><strong>Month:</strong> 5 apps / $3,800 premium</li>
+        <li><strong>Annualized Premium:</strong> $45,600</li>
+      </ul>
     </div>
 
-    <div class="footer">
-      © 2025 Agency Builder CRM — Tier 1 Edition
+    <div class="card">
+      <h2>📅 Upcoming Appointments</h2>
+      <ul>
+        <li>Tomorrow — John Doe (Policy Review)</li>
+        <li>Friday — Sarah Lee (New Client)</li>
+        <li>Monday — Team Meeting</li>
+      </ul>
     </div>
-  </main>
+
+    <div class="card">
+      <h2>🌟 Today’s Insights</h2>
+      <ul>
+        <li>🎂 <strong>Birthdays:</strong> 2 upcoming this week</li>
+        <li>💍 <strong>Anniversaries:</strong> None in next 10 days</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🆕 Recently Added Contacts</h2>
+      <ul>
+        <li>James Carter — Added today</li>
+        <li>Alicia Barnes — Added 2 days ago</li>
+        <li>Henry Wilson — Added 4 days ago</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 Agency Builder CRM — Tier 1 Edition
+  </div>
+</main>
+
 </body>
 </html>
