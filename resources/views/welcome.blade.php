@@ -6,29 +6,29 @@
     <title>Agency Builder CRM - Tier 1</title>
     <link rel="stylesheet" href="/assets/css/app.css">
     <style>
-        /* =============== GLOBAL STYLES =============== */
+        /* ===== GLOBAL STYLES ===== */
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4e6c2; /* warm beige background */
+            background-color: #f9eed4; /* lighter beige background */
             color: #1a1a1a;
             display: flex;
             height: 100vh;
         }
 
-        /* =============== SIDEBAR =============== */
+        /* ===== SIDEBAR ===== */
         .sidebar {
-            background-color: #2b2b2b;
+            background-color: #0c0c0c; /* exact black to match logo background */
             width: 260px;
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
         }
 
         .sidebar img {
-            width: 280px; /* 200% bigger logo */
+            width: 280px; /* 200% larger logo */
             margin-bottom: 25px;
         }
 
@@ -43,10 +43,10 @@
             width: 100%;
             padding: 12px 16px;
             margin: 6px 0;
-            background-color: #3a3a3a;
+            background-color: #1a1a1a;
             border-radius: 6px;
             text-align: left;
-            color: #f8f8f8;
+            color: #f0f0f0;
             font-size: 15px;
             cursor: pointer;
             display: flex;
@@ -57,19 +57,19 @@
 
         .nav-item:hover {
             background-color: #d8b769;
-            color: #1a1a1a;
+            color: #0c0c0c;
         }
 
         .nav-item.active {
             background-color: #d8b769;
-            color: #1a1a1a;
+            color: #0c0c0c;
             font-weight: 600;
         }
 
-        /* =============== MAIN CONTENT =============== */
+        /* ===== MAIN CONTENT ===== */
         .main {
             flex-grow: 1;
-            background-color: #f4e6c2; /* warm beige */
+            background-color: #f9eed4; /* soft beige background */
             padding: 40px;
         }
 
@@ -82,7 +82,7 @@
 
         .header h1 {
             font-size: 30px;
-            color: #6b5523; /* darker gold-brown */
+            color: #6b5523; /* warm gold-brown for titles */
             margin: 0;
         }
 
@@ -91,7 +91,7 @@
             font-weight: 500;
         }
 
-        /* =============== DASHBOARD CARDS =============== */
+        /* ===== DASHBOARD CARDS ===== */
         .stats {
             display: flex;
             flex-wrap: wrap;
@@ -99,14 +99,14 @@
         }
 
         .card {
-            background-color: #fff6e5;
-            border: 1px solid #cbb36a;
+            background-color: #fff8e7;
+            border: 1px solid #d1b86b;
             border-radius: 10px;
             padding: 25px 30px;
             width: 200px;
             text-align: center;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s;
+            transition: transform 0.2s ease;
         }
 
         .card:hover {
@@ -121,7 +121,7 @@
         .card p {
             font-size: 24px;
             font-weight: 600;
-            color: #2b2b2b;
+            color: #1a1a1a;
             margin: 0;
         }
     </style>
