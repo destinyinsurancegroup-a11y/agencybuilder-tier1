@@ -1,43 +1,62 @@
-<div class="row">
-  <div class="card" style="flex:2; min-width:360px;">
-    <h3>Upcoming Appointments</h3>
-    <table>
-      <thead><tr><th>Date</th><th>Time</th><th>With</th><th>Type</th><th>Notes</th></tr></thead>
-      <tbody id="appt-body">
-        <tr><td>2025-10-30</td><td>10:00 AM</td><td>John Scott</td><td>Presentation</td><td>Bring term illustrations</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="card form-card" style="flex:1; min-width:320px;">
-    <h3>Add Appointment</h3>
-    <div class="row">
-      <div class="input"><label>Date</label><input id="a-date" type="date"></div>
-      <div class="input"><label>Time</label><input id="a-time" type="time"></div>
-    </div>
-    <div class="row">
-      <div class="input"><label>With</label><input id="a-with" placeholder="Contact name"></div>
-      <div class="input"><label>Type</label>
-        <select id="a-type">
-          <option>Call</option><option>Presentation</option><option>Service</option>
-        </select>
-      </div>
-    </div>
-    <div class="input"><label>Notes</label><textarea id="a-notes" rows="3"></textarea></div>
-    <button class="btn" onclick="addAppt()">Add</button>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Calendar & Activity | Agency Builder CRM</title>
+<style>
+<?php echo file_get_contents(__DIR__ . '/dashboard.php', false, null, strpos(file_get_contents(__DIR__ . '/dashboard.php'), '<style>') + 7, strpos(file_get_contents(__DIR__ . '/dashboard.php'), '</style>') - strpos(file_get_contents(__DIR__ . '/dashboard.php'), '<style>') - 7); ?>
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <img src="/assets/images/logo.png" alt="Agency Builder Logo">
+  <nav class="sidebar-nav">
+    <a href="/index.php?page=dashboard" class="nav-item">🏠 Dashboard</a>
+    <a href="/index.php?page=all_contacts" class="nav-item">👥 All Contacts</a>
+    <a href="/index.php?page=book_of_business" class="nav-item">📘 Book of Business</a>
+    <a href="/index.php?page=leads" class="nav-item">💬 Leads</a>
+    <a href="/index.php?page=service" class="nav-item">🧰 Service</a>
+    <a href="/index.php?page=calendar_activity" class="nav-item">📅 Calendar / Activity</a>
+    <a href="/index.php?page=activity" class="nav-item">📊 Activity</a>
+    <a href="/index.php?page=billing" class="nav-item">💳 Billing</a>
+    <a href="/index.php?page=settings" class="nav-item">⚙️ Settings</a>
+    <a href="/index.php?page=logout" class="nav-item">🚪 Logout</a>
+  </nav>
 </div>
 
-<script>
-function addAppt(){
-  const body = document.getElementById('appt-body');
-  const d = document.getElementById('a-date').value||'';
-  const t = document.getElementById('a-time').value||'';
-  const w = document.getElementById('a-with').value||'';
-  const ty= document.getElementById('a-type').value||'';
-  const n = document.getElementById('a-notes').value||'';
-  if(!d||!t||!w){ alert('Please enter date, time, and with whom.'); return; }
-  const tr = document.createElement('tr');
-  tr.innerHTML = `<td>${d}</td><td>${t}</td><td>${w}</td><td>${ty}</td><td>${n}</td>`;
-  body.appendChild(tr);
-}
-</script>
+<div class="main">
+  <h1>Calendar & Activity</h1>
+  <p class="greeting">Record and view your production activity daily, weekly, and monthly.</p>
+
+  <div class="dashboard-grid">
+    <div class="card">
+      <h3>🗓️ This Week</h3>
+      <ul>
+        <li>Calls: 45</li>
+        <li>Presentations: 12</li>
+        <li>Sales: 4</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📅 Upcoming Schedule</h3>
+      <ul>
+        <li>Tuesday — Follow-up with Maria Lopez</li>
+        <li>Friday — Team meeting (9 AM)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📈 Monthly Totals</h3>
+      <ul>
+        <li>Calls: 210</li>
+        <li>Presentations: 54</li>
+        <li>Sales: 18</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">© 2025 Agency Builder CRM — Tier 1</div>
+</div>
+</body>
+</html>
