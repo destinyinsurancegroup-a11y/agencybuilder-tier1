@@ -1,17 +1,51 @@
 <?php
-// ==============================================
-// Agency Builder CRM - Tier 1 (Bootstrap)
-// ==============================================
+// -------------------------------------------------------------
+// Agency Builder CRM (Tier 1) — Minimal Router (no framework)
+// -------------------------------------------------------------
+$routes = [
+    'dashboard'         => 'dashboard.php',
+    'all-contacts'      => 'all_contacts.php',
+    'book-of-business'  => 'book_of_business.php',
+    'leads'             => 'leads.php',
+    'service'           => 'service.php',
+    'calendar-activity' => 'calendar_activity.php',
+    'activity'          => 'activity.php',
+    'billing'           => 'billing.php',
+    'settings'          => 'settings.php',
+    'logout'            => 'logout.php',
+];
 
-// Basic routing simulation (for demo)
-$request = $_SERVER['REQUEST_URI'];
+$labels = [
+    'dashboard'         => 'Dashboard',
+    'all-contacts'      => 'All Contacts',
+    'book-of-business'  => 'Book of Business',
+    'leads'             => 'Leads',
+    'service'           => 'Service',
+    'calendar-activity' => 'Calendar / Activity',
+    'activity'          => 'Activity',
+    'billing'           => 'Billing',
+    'settings'          => 'Settings',
+    'logout'            => 'Logout',
+];
 
-if ($request === '/' || $request === '/index.php') {
-    include __DIR__ . '/../resources/views/welcome.blade.php';
+$tab = $_GET['tab'] ?? 'dashboard';
+if (!array_key_exists($tab, $routes)) {
+    $tab = 'dashboard';
+}
+
+$page_title = $labels[$tab];
+
+$viewFile = __DIR__ . "/../resources/views/{$routes[$tab]}";
+if (!file_exists($viewFile)) {
+    http_response_code(404);
+    echo "View not found";
     exit;
 }
 
-// Handle missing routes
-http_response_code(404);
-echo "<h1>404 - Page Not Found</h1>";
-?>
+// Render view into buffer:
+ob_start();
+include $viewFile;     // each view prints its content (no <html> wrapper)
+$body = ob_get_clean();
+
+// Layout will use: $page_title, $tab, $body
+include __DIR__ . "/../resources/views/layout.php";
