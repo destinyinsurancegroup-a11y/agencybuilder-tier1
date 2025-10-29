@@ -29,7 +29,7 @@
         }
 
         .sidebar img {
-            width: 120px;
+            width: 140px;
             margin-bottom: 20px;
             filter: drop-shadow(0 0 4px rgba(201,164,76,0.6));
         }
@@ -139,8 +139,8 @@
 </head>
 <body>
     <div class="sidebar">
-        <!-- Replace the placeholder with your real logo: /assets/logo.png -->
-        <img src="/assets/logo.png" alt="Agency Builder Logo" onerror="this.src='https://via.placeholder.com/120x120?text=Logo'">
+        <!-- Agency Builder CRM Logo -->
+        <img src="/assets/images/logo.png" alt="Agency Builder Logo" onerror="this.src='https://via.placeholder.com/140x140?text=Logo'">
         <h2>Agency Builder</h2>
 
         <div class="nav-item active">🏠 Dashboard</div>
