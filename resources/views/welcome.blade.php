@@ -9,50 +9,66 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #111;
+            background-color: #0e0e0e;
             color: #f8f8f8;
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
 
         /* ===== Sidebar ===== */
         .sidebar {
-            background-color: #1a1a1a;
+            background-color: #161616;
             width: 260px;
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
 
         .sidebar img {
             width: 120px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 4px rgba(201,164,76,0.6));
         }
 
         .sidebar h2 {
             color: #c9a44c;
             font-size: 20px;
-            margin-bottom: 10px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
 
         .nav-item {
             width: 100%;
             padding: 12px 16px;
             margin: 6px 0;
-            background-color: #222;
+            background-color: #1f1f1f;
             border-radius: 6px;
             text-align: left;
-            color: #ddd;
+            color: #ccc;
             font-size: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
         }
 
         .nav-item:hover {
             background-color: #c9a44c;
             color: #111;
+            transform: translateX(6px);
+        }
+
+        .nav-item.active {
+            background-color: #c9a44c;
+            color: #111;
+            font-weight: 600;
+            box-shadow: 0 0 6px rgba(201,164,76,0.6);
         }
 
         /* ===== Main Area ===== */
@@ -62,23 +78,32 @@
             padding: 40px;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
             font-size: 28px;
             color: #c9a44c;
             margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: #aaa;
+            margin: 0;
         }
 
         .stats {
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
         }
 
@@ -86,28 +111,39 @@
             background-color: #222;
             border: 1px solid #333;
             border-radius: 10px;
-            padding: 20px 30px;
+            padding: 25px 30px;
             width: 200px;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 12px rgba(201,164,76,0.3);
         }
 
         .card h3 {
             color: #c9a44c;
             margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 16px;
         }
 
         .card p {
-            font-size: 22px;
+            font-size: 24px;
             margin: 0;
+            color: #f8f8f8;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <!-- placeholder for logo -->
-        <img src="https://via.placeholder.com/120x120?text=Logo" alt="Agency Builder Logo">
+        <!-- Replace the placeholder with your real logo: /assets/logo.png -->
+        <img src="/assets/logo.png" alt="Agency Builder Logo" onerror="this.src='https://via.placeholder.com/120x120?text=Logo'">
         <h2>Agency Builder</h2>
-        <div class="nav-item">🏠 Dashboard</div>
+
+        <div class="nav-item active">🏠 Dashboard</div>
         <div class="nav-item">📈 My Numbers</div>
         <div class="nav-item">💬 Leads</div>
         <div class="nav-item">📞 Calls</div>
