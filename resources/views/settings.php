@@ -1,20 +1,28 @@
-<div class="card form-card" style="max-width:880px;">
-  <h3>Profile Settings</h3>
-  <div class="row">
-    <div class="input"><label>First Name</label><input placeholder="Richard"></div>
-    <div class="input"><label>Last Name</label><input placeholder="Dehn"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Settings | Agency Builder CRM</title>
+<style>
+<?php include 'dashboard_styles.css'; ?>
+</style>
+</head>
+<body>
+<?php include 'sidebar.php'; ?>
+<div class="main">
+  <h1>Settings</h1>
+  <p class="greeting">Update your profile, notifications, and preferences.</p>
+
+  <div class="card">
+    <h3>👤 Profile Settings</h3>
+    <form>
+      <label>Name:</label><input type="text" value="Agent">
+      <label>Email:</label><input type="email" value="agent@example.com">
+      <button type="submit">💾 Save Changes</button>
+    </form>
   </div>
-  <div class="row">
-    <div class="input"><label>Email</label><input placeholder="you@agency.com"></div>
-    <div class="input"><label>Phone</label><input placeholder="(555) 555-5555"></div>
-  </div>
-  <div class="row">
-    <div class="input"><label>Agency Name</label><input placeholder="Destiny Insurance Group"></div>
-    <div class="input"><label>Timezone</label>
-      <select>
-        <option>EST</option><option>CST</option><option>MST</option><option>PST</option>
-      </select>
-    </div>
-  </div>
-  <button class="btn">Save Settings</button>
+
+  <div class="footer">© 2025 Agency Builder CRM — Tier 1 Edition</div>
 </div>
+</body>
+</html>
