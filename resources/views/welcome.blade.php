@@ -13,10 +13,8 @@
             color: #f8f8f8;
             display: flex;
             height: 100vh;
-            overflow: hidden;
         }
 
-        /* ===== Sidebar ===== */
         .sidebar {
             background-color: #161616;
             width: 260px;
@@ -25,14 +23,11 @@
             flex-direction: column;
             align-items: center;
             box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
         }
 
-        /* ✅ Updated: Bigger logo, no glow */
         .sidebar img {
-            width: 280px; /* was 140px — 200% larger */
+            width: 280px; /* 200% bigger logo */
             margin-bottom: 20px;
-            filter: none; /* removed glow */
         }
 
         .sidebar h2 {
@@ -40,7 +35,6 @@
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 25px;
-            letter-spacing: 0.5px;
         }
 
         .nav-item {
@@ -56,30 +50,24 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.25s ease;
+            transition: 0.25s;
         }
 
         .nav-item:hover {
             background-color: #c9a44c;
             color: #111;
-            transform: translateX(6px);
         }
 
         .nav-item.active {
             background-color: #c9a44c;
             color: #111;
             font-weight: 600;
-            box-shadow: 0 0 6px rgba(201,164,76,0.6);
         }
 
-        /* ===== Main Area ===== */
         .main {
             flex-grow: 1;
             background-color: #181818;
             padding: 40px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
         }
 
         .header {
@@ -92,13 +80,6 @@
         .header h1 {
             font-size: 28px;
             color: #c9a44c;
-            margin: 0;
-            letter-spacing: 0.5px;
-        }
-
-        .header p {
-            font-size: 15px;
-            color: #aaa;
             margin: 0;
         }
 
@@ -115,37 +96,26 @@
             padding: 25px 30px;
             width: 200px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 12px rgba(201,164,76,0.3);
         }
 
         .card h3 {
             color: #c9a44c;
             margin-bottom: 10px;
-            font-weight: 600;
-            font-size: 16px;
         }
 
         .card p {
             font-size: 24px;
             margin: 0;
-            color: #f8f8f8;
-            font-weight: 500;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <!-- Agency Builder CRM Logo -->
-        <img src="/assets/images/logo.png" alt="Agency Builder Logo" onerror="this.src='https://via.placeholder.com/280x280?text=Logo'">
+        <img src="/assets/images/logo.png" alt="Agency Builder Logo">
         <h2>Agency Builder</h2>
 
         <div class="nav-item active">🏠 Dashboard</div>
-        <div class="nav-item">📈 My Numbers</div>
+        <div class="nav-item" onclick="window.location='/mynumbers'">📈 My Numbers</div>
         <div class="nav-item">💬 Leads</div>
         <div class="nav-item">📞 Calls</div>
         <div class="nav-item">🧾 Sales</div>
@@ -178,4 +148,3 @@
     </div>
 </body>
 </html>
-
