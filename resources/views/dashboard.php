@@ -1,248 +1,166 @@
-<?php
-// Agency Builder CRM - Tier 1 Dashboard (Corrected Layout)
-date_default_timezone_set('America/Detroit');
-
-$hour = (int)date('H');
-$agentName = "Agent"; // You can make this dynamic later
-$greeting = ($hour < 12) ? "Good Morning, $agentName 👋" : (($hour < 18) ? "Good Afternoon, $agentName 👋" : "Good Evening, $agentName 👋");
-$currentTime = date('l, F j, Y — g:i A');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Agency Builder CRM | Dashboard</title>
+<title>Dashboard | Agency Builder CRM</title>
 <style>
 :root {
-  --gold: #D4AF37;
-  --cream: #fffdf7;
-  --light: #f8f8f8;
-  --dark: #111;
-  --border: #e7e3cc;
+  --gold:#D4AF37;
+  --cream:#fffdf7;
+  --dark:#000;
+  --text:#111;
 }
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  height: 100vh;
-  background: var(--cream);
-  color: var(--dark);
-  overflow: hidden;
+  margin:0;
+  font-family:'Segoe UI',Tahoma,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  display:flex;
+  height:100vh;
 }
-
-/* Sidebar */
 .sidebar {
-  width: 260px;
-  background: #1a1a1a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px 20px;
-  box-shadow: 3px 0 10px rgba(0,0,0,0.4);
+  width:260px;
+  background:var(--dark);
+  padding:30px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  box-shadow:3px 0 10px rgba(0,0,0,0.4);
 }
 .sidebar img {
-  width: 130px;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 0 6px rgba(212,175,55,0.8));
+  width:280px; /* 200% larger logo */
+  margin-bottom:30px;
 }
-.sidebar h2 {
-  color: var(--gold);
-  font-size: 20px;
-  margin-bottom: 20px;
-}
+.sidebar-nav {width:100%;}
 .nav-item {
-  width: 100%;
-  background: #222;
-  color: #ddd;
-  text-decoration: none;
-  padding: 10px 15px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  display: block;
-  border: 1px solid #333;
-  transition: 0.3s;
+  display:block;
+  color:#f5f5f5;
+  text-decoration:none;
+  padding:12px 16px;
+  margin:6px 0;
+  border-radius:6px;
+  font-size:15px;
+  background:rgba(255,255,255,0.05);
+  transition:0.3s;
 }
-.nav-item:hover,
-.nav-item.active {
-  background: var(--gold);
-  color: #111;
-}
-
-/* Main Content */
+.nav-item:hover {background:var(--gold);color:#000;}
 .main {
-  flex-grow: 1;
-  background: linear-gradient(180deg, var(--light), var(--cream));
-  overflow-y: auto;
-  padding: 40px 60px;
+  flex-grow:1;
+  background:var(--cream);
+  padding:40px;
+  overflow-y:auto;
 }
-
-/* Header */
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-.dashboard-header h1 {
-  margin: 0;
-  font-size: 30px;
-  color: var(--dark);
-}
-.greeting {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--gold);
-  margin-top: 5px;
-}
-.time {
-  font-size: 14px;
-  color: #555;
-  font-weight: 600;
-}
+h1 {font-size:30px;margin:0;color:var(--dark);}
+.greeting {color:var(--gold);font-weight:600;margin:10px 0 25px;}
 .search-bar {
-  display: flex;
-  align-items: center;
-  border: 2px solid var(--gold);
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--cream);
+  display:flex;
+  border:2px solid var(--gold);
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:25px;
+  width:fit-content;
 }
 .search-bar input {
-  border: none;
-  padding: 10px;
-  width: 220px;
-  font-size: 14px;
-  background: var(--cream);
-  outline: none;
+  border:none;
+  outline:none;
+  padding:10px 12px;
+  width:240px;
+  background:var(--cream);
 }
 .search-bar button {
-  background: var(--gold);
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-weight: bold;
+  background:var(--gold);
+  border:none;
+  padding:10px 14px;
+  cursor:pointer;
+  font-weight:600;
 }
-
-/* Dashboard Cards */
 .dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
 }
 .card {
-  background: var(--cream);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  flex:1;
+  min-width:280px;
+  background:var(--cream);
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:20px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.1);
 }
 .card h3 {
-  border-left: 4px solid var(--gold);
-  padding-left: 8px;
-  color: var(--dark);
-  margin-top: 0;
-  font-size: 18px;
-  font-weight: bold;
+  border-left:4px solid var(--gold);
+  padding-left:8px;
+  color:var(--dark);
 }
-.card ul {
-  list-style: none;
-  margin: 10px 0 0;
-  padding: 0;
-}
-.card li {
-  margin-bottom: 6px;
-  font-size: 15px;
-}
-
-/* Footer */
 .footer {
-  margin-top: 40px;
-  text-align: center;
-  color: #777;
-  font-size: 13px;
-  padding-bottom: 20px;
+  text-align:center;
+  font-size:13px;
+  color:#666;
+  margin-top:30px;
 }
 </style>
 </head>
 <body>
-
-<!-- ✅ SINGLE SIDEBAR (fixed duplication issue) -->
 <div class="sidebar">
   <img src="/assets/images/logo.png" alt="Agency Builder Logo">
-  <h2>Agency Builder</h2>
-  <a href="dashboard.php" class="nav-item active">🏠 Dashboard</a>
-  <a href="all_contacts.php" class="nav-item">👥 All Contacts</a>
-  <a href="book_of_business.php" class="nav-item">📘 Book of Business</a>
-  <a href="leads.php" class="nav-item">💬 Leads</a>
-  <a href="service.php" class="nav-item">🧰 Service</a>
-  <a href="calendar_activity.php" class="nav-item">📅 Calendar / Activity</a>
-  <a href="activity.php" class="nav-item">📊 Activity</a>
-  <a href="billing.php" class="nav-item">💳 Billing</a>
-  <a href="settings.php" class="nav-item">⚙️ Settings</a>
-  <a href="logout.php" class="nav-item">🚪 Logout</a>
+  <nav class="sidebar-nav">
+    <a href="/index.php?page=dashboard" class="nav-item">🏠 Dashboard</a>
+    <a href="/index.php?page=all_contacts" class="nav-item">👥 All Contacts</a>
+    <a href="/index.php?page=book_of_business" class="nav-item">📘 Book of Business</a>
+    <a href="/index.php?page=leads" class="nav-item">💬 Leads</a>
+    <a href="/index.php?page=service" class="nav-item">🧰 Service</a>
+    <a href="/index.php?page=calendar_activity" class="nav-item">📅 Calendar / Activity</a>
+    <a href="/index.php?page=activity" class="nav-item">📊 Activity</a>
+    <a href="/index.php?page=billing" class="nav-item">💳 Billing</a>
+    <a href="/index.php?page=settings" class="nav-item">⚙️ Settings</a>
+    <a href="/index.php?page=logout" class="nav-item">🚪 Logout</a>
+  </nav>
 </div>
 
-<!-- ✅ MAIN DASHBOARD CONTENT -->
 <div class="main">
-  <div class="dashboard-header">
-    <div>
-      <h1>Dashboard</h1>
-      <div class="greeting"><?= $greeting ?></div>
-      <div class="time"><?= $currentTime ?></div>
-    </div>
-    <form class="search-bar" method="GET" action="search_results.php">
-      <input type="text" name="q" placeholder="Search by name, phone, or email...">
-      <button type="submit">🔍</button>
-    </form>
+  <h1>Dashboard</h1>
+  <p class="greeting">Good afternoon, Agent — here’s your daily overview.</p>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search contacts, leads, or clients...">
+    <button>🔍</button>
   </div>
 
   <div class="dashboard-grid">
     <div class="card">
       <h3>📈 Current Production</h3>
       <ul>
-        <li><strong>Today:</strong> 5 calls / 3 answered / 1 stop</li>
-        <li><strong>Week:</strong> 25 calls / 15 answered / 10 pres / 3 sales</li>
-        <li><strong>Month:</strong> 8 apps / $4,200 premium</li>
-        <li><strong>Annualized Premium:</strong> $50,400</li>
+        <li>Calls: 35</li>
+        <li>Presentations: 9</li>
+        <li>Sales: 3</li>
+        <li>Premium: $2,950</li>
       </ul>
     </div>
-
     <div class="card">
       <h3>📅 Upcoming Appointments</h3>
       <ul>
-        <li>Tomorrow — Jane Smith (Policy Review)</li>
-        <li>Friday — Tom Harris (New Client)</li>
-        <li>Monday — Team Call</li>
+        <li>John Smith — Tues 2PM</li>
+        <li>Maria Lopez — Wed 11AM</li>
       </ul>
     </div>
-
     <div class="card">
       <h3>🌟 Today’s Insights</h3>
       <ul>
-        <li>🎂 <strong>Birthdays:</strong> 1 upcoming this week</li>
-        <li>💍 <strong>Anniversaries:</strong> None this week</li>
+        <li>🎂 2 Birthdays this week</li>
+        <li>💍 1 Anniversary coming up</li>
       </ul>
     </div>
-
     <div class="card">
-      <h3>🆕 Recently Added Contacts</h3>
+      <h3>🆕 Recently Added</h3>
       <ul>
-        <li>James Carter — Added today</li>
-        <li>Maria Lopez — Added yesterday</li>
-        <li>Henry Wilson — Added 3 days ago</li>
+        <li>Olivia Chen — Lead</li>
+        <li>James Carter — Client</li>
       </ul>
     </div>
   </div>
 
-  <div class="footer">
-    © 2025 Agency Builder CRM — Tier 1 Edition
-  </div>
+  <div class="footer">© 2025 Agency Builder CRM — Tier 1</div>
 </div>
-
 </body>
 </html>
