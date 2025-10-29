@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Numbers - Agency Builder CRM</title>
+    <title>My Numbers | Agency Builder CRM</title>
     <link rel="stylesheet" href="/assets/css/app.css">
     <style>
-        /* ===== GLOBAL ===== */
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9eed4; /* lighter beige background */
-            color: #1a1a1a;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background-color: #f8f5ee;
+            color: #222;
             display: flex;
             height: 100vh;
-            overflow: hidden;
         }
 
-        /* ===== SIDEBAR ===== */
+        /* Sidebar */
         .sidebar {
-            background-color: #0c0c0c; /* exact black to match logo background */
+            background-color: #0e0e0e;
             width: 260px;
             padding: 30px 20px;
             display: flex;
@@ -29,14 +27,14 @@
         }
 
         .sidebar img {
-            width: 280px;
-            margin-bottom: 25px;
+            width: 140px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 4px rgba(201,164,76,0.6));
         }
 
         .sidebar h2 {
-            color: #d8b769;
-            font-size: 20px;
-            font-weight: 600;
+            color: #c9a44c;
+            font-size: 19px;
             margin-bottom: 25px;
         }
 
@@ -44,34 +42,35 @@
             width: 100%;
             padding: 12px 16px;
             margin: 6px 0;
-            background-color: #1a1a1a;
+            background-color: #1b1b1b;
             border-radius: 6px;
             text-align: left;
-            color: #f0f0f0;
+            color: #e4e4e4;
             font-size: 15px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: 0.25s;
+            transition: all 0.25s ease;
         }
 
         .nav-item:hover {
-            background-color: #d8b769;
-            color: #0c0c0c;
+            background-color: #d6b15d;
+            color: #111;
         }
 
         .nav-item.active {
-            background-color: #d8b769;
-            color: #0c0c0c;
+            background-color: #d6b15d;
+            color: #111;
             font-weight: 600;
+            box-shadow: 0 0 6px rgba(214,177,93,0.6);
         }
 
-        /* ===== MAIN CONTENT ===== */
+        /* Main Section */
         .main {
             flex-grow: 1;
-            background-color: #f9eed4;
             padding: 40px;
+            background-color: #f8f5ee;
             overflow-y: auto;
         }
 
@@ -83,91 +82,90 @@
         }
 
         .header h1 {
-            font-size: 30px;
-            color: #6b5523;
-            margin: 0;
+            font-size: 28px;
+            color: #111;
+            font-weight: 700;
         }
 
         .header p {
-            color: #4a3b1f;
-            font-weight: 500;
+            color: #666;
+            font-size: 15px;
         }
 
-        /* ===== FORM ===== */
-        .form-container {
-            background-color: #fff8e7; /* soft cream */
-            border: 1px solid #d1b86b;
+        /* Performance Cards */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: #fffdfa;
+            border: 1px solid #e0d8c8;
             border-radius: 10px;
-            padding: 30px;
-            width: 420px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        label {
-            display: block;
-            color: #6b5523;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            margin-bottom: 15px;
-            background-color: #f3e5c6;
-            color: #1a1a1a;
-            font-size: 16px;
-        }
-
-        input:focus {
-            outline: 2px solid #d8b769;
-        }
-
-        button {
-            background-color: #d8b769;
-            color: #0c0c0c;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            padding: 12px 20px;
-            cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #e3c372;
-        }
-
-        .results {
-            margin-top: 25px;
-            padding: 20px;
-            background-color: #f3e5c6;
-            border-radius: 8px;
+            padding: 25px;
+            width: 240px;
             text-align: center;
-            border: 1px solid #d1b86b;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
 
-        .results h3 {
-            color: #6b5523;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(214,177,93,0.25);
+        }
+
+        .card h3 {
+            color: #b4903d;
             margin-bottom: 10px;
         }
 
-        .results p {
-            font-size: 22px;
-            margin: 5px 0;
+        .card p {
+            font-size: 24px;
             font-weight: 600;
         }
+
+        /* Goal Progress */
+        .goal {
+            background: #fffdfa;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e0d8c8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 14px;
+            width: 100%;
+            background: #eee3c9;
+            border-radius: 7px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            width: 70%; /* Example progress */
+            background: linear-gradient(90deg, #d6b15d, #b4903d);
+            border-radius: 7px;
+            transition: width 0.5s;
+        }
+
+        .goal-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
     </style>
 </head>
 <body>
     <div class="sidebar">
         <img src="/assets/images/logo.png" alt="Agency Builder Logo">
         <h2>Agency Builder</h2>
-
-        <div class="nav-item" onclick="window.location='/'">🏠 Dashboard</div>
+        <div class="nav-item">🏠 Dashboard</div>
         <div class="nav-item active">📈 My Numbers</div>
         <div class="nav-item">💬 Leads</div>
         <div class="nav-item">📞 Calls</div>
@@ -177,55 +175,28 @@
     <div class="main">
         <div class="header">
             <h1>My Numbers</h1>
-            <p>Track your daily performance metrics</p>
+            <p>Performance overview — October 2025</p>
         </div>
 
-        <div class="form-container">
-            <label for="leads">Leads</label>
-            <input type="number" id="leads" placeholder="Enter number of leads">
+        <div class="stats">
+            <div class="card"><h3>Calls Made</h3><p>127</p></div>
+            <div class="card"><h3>Appointments Set</h3><p>34</p></div>
+            <div class="card"><h3>Presentations</h3><p>20</p></div>
+            <div class="card"><h3>Sales Closed</h3><p>7</p></div>
+            <div class="card"><h3>Conversion Rate</h3><p>35%</p></div>
+        </div>
 
-            <label for="presentations">Presentations</label>
-            <input type="number" id="presentations" placeholder="Enter presentations">
+        <div class="goal">
+            <div class="goal-title">Monthly Sales Goal</div>
+            <div class="progress-bar"><div class="progress-bar-inner"></div></div>
+            <p style="font-size:14px;color:#555;margin-top:6px;">$7,000 of $10,000 target (70%)</p>
+        </div>
 
-            <label for="sales">Sales</label>
-            <input type="number" id="sales" placeholder="Enter sales made">
-
-            <button onclick="calculate()">Calculate</button>
-
-            <div class="results">
-                <h3>Conversion Rate</h3>
-                <p id="conversion">0%</p>
-            </div>
+        <div class="goal">
+            <div class="goal-title">Weekly Call Goal</div>
+            <div class="progress-bar"><div class="progress-bar-inner" style="width:85%;"></div></div>
+            <p style="font-size:14px;color:#555;margin-top:6px;">85 of 100 calls (85%)</p>
         </div>
     </div>
-
-    <script>
-        // Load saved values from localStorage
-        window.onload = function() {
-            const leads = localStorage.getItem('leads');
-            const pres = localStorage.getItem('presentations');
-            const sales = localStorage.getItem('sales');
-            if (leads) document.getElementById('leads').value = leads;
-            if (pres) document.getElementById('presentations').value = pres;
-            if (sales) document.getElementById('sales').value = sales;
-            calculate();
-        }
-
-        // Calculate conversion and save
-        function calculate() {
-            const leads = parseInt(document.getElementById('leads').value) || 0;
-            const pres = parseInt(document.getElementById('presentations').value) || 0;
-            const sales = parseInt(document.getElementById('sales').value) || 0;
-
-            const conversion = leads > 0 ? ((sales / leads) * 100).toFixed(1) : 0;
-
-            document.getElementById('conversion').textContent = conversion + "%";
-
-            // Save values
-            localStorage.setItem('leads', leads);
-            localStorage.setItem('presentations', pres);
-            localStorage.setItem('sales', sales);
-        }
-    </script>
 </body>
 </html>
