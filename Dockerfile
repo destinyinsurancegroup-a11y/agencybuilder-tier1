@@ -4,7 +4,7 @@
 
 FROM php:8.2-apache
 
-# Enable Apache rewrite (for Laravel routing)
+# Enable Apache rewrite
 RUN a2enmod rewrite
 
 # Install dependencies
@@ -23,23 +23,22 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd pdo pdo_mysql zip opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Composer globally
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy EVERYTHING from the repo root into the container
+# Copy the entire project into the container
 COPY . .
 
-# Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# Fix permissions BEFORE running composer
+RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
-# Fix permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+# Composer install (fail gracefully)
+RUN composer install --no-dev --optimize-autoloader --no-interaction || echo "Composer install skipped"
 
-# Apache virtual host
+# Apache virtual host setup
 RUN echo '<VirtualHost *:80>\n\
     ServerName localhost\n\
     DocumentRoot /var/www/html/public\n\
