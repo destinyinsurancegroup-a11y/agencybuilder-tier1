@@ -7,7 +7,7 @@ FROM php:8.2-apache
 # Enable Apache rewrite (for Laravel routing)
 RUN a2enmod rewrite
 
-# Install system dependencies and PHP extensions
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -29,17 +29,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy application source code
-COPY . /var/www/html
+# Copy EVERYTHING from the repo root into the container
+COPY . .
 
-# Install Laravel dependencies (skip dev packages)
-RUN composer install --no-dev --optimize-autoloader --no-interaction || true
+# Install Laravel dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Fix file and directory permissions for Laravel
+# Fix permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Configure Apache to serve Laravel public directory properly
+# Apache virtual host
 RUN echo '<VirtualHost *:80>\n\
     ServerName localhost\n\
     DocumentRoot /var/www/html/public\n\
@@ -52,11 +52,6 @@ RUN echo '<VirtualHost *:80>\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# Enable Laravel routing (mod_rewrite)
-RUN a2enmod rewrite
-
-# Expose port 80 (DigitalOcean maps external traffic to this)
 EXPOSE 80
 
-# Start Apache server in the foreground
 CMD ["apache2-foreground"]
