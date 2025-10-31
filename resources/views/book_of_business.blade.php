@@ -5,9 +5,16 @@
   <aside class="sidebar">
     <img src="/assets/images/logo.png" class="sidebar-logo">
     <nav class="sidebar-nav">
-      <a href="{{ url('/dashboard') }}">Dashboard</a>
-      <a href="{{ url('/all-contacts') }}">All Contacts</a>
-      <a href="{{ route('book.business') }}" class="active">Book of Business</a>
+      <a href="/dashboard">🏠 Dashboard</a>
+      <a href="/all-contacts">👥 All Contacts</a>
+      <a href="{{ route('book.business') }}" class="active">📘 Book of Business</a>
+      <a href="/leads">💬 Leads</a>
+      <a href="/service">🧰 Service</a>
+      <a href="/calendar-activity">📅 Calendar / Activity</a>
+      <a href="/activity">📊 Activity</a>
+      <a href="/billing">💳 Billing</a>
+      <a href="/settings">⚙️ Settings</a>
+      <a href="/logout">🚪 Logout</a>
     </nav>
   </aside>
 
