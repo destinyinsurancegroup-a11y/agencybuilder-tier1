@@ -1,46 +1,36 @@
 {
-    "name": "agencybuildercrm/agencybuilder-tier1",
-    "description": "Agency Builder CRM — Tier 1 Laravel 10+ Individual Agent Version",
+    "name": "agencybuildercrm/tier1",
+    "description": "Agency Builder CRM — Tier 1",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "require": {
         "php": "^8.1",
         "laravel/framework": "^10.0",
+        "laravel/tinker": "^2.8",
         "guzzlehttp/guzzle": "^7.2",
-        "fruitcake/laravel-cors": "^3.0",
-        "fideloper/proxy": "^4.4",
-        "laravel/tinker": "^2.8"
+        "doctrine/dbal": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.18",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.0"
+        "laravel/pail": "^1.0"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/"
         },
         "classmap": [
-            "database/seeders",
-            "database/factories"
-        ],
-        "files": [
-            "app/helpers.php"
+            "database/"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
         ]
     },
     "minimum-stability": "stable",
