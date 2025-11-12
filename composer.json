@@ -1,17 +1,15 @@
 {
     "name": "agencybuildercrm/agencybuilder-tier1",
-    "description": "Agency Builder CRM — Tier 1 (Individual Agent Laravel 10+ Build)",
-    "keywords": ["agency", "crm", "insurance", "laravel", "multi-tenant"],
-    "license": "proprietary",
+    "description": "Agency Builder CRM — Tier 1 Laravel 10+ Individual Agent Version",
     "type": "project",
+    "license": "proprietary",
     "require": {
         "php": "^8.1",
         "laravel/framework": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
         "fruitcake/laravel-cors": "^3.0",
         "fideloper/proxy": "^4.4",
-        "laravel/tinker": "^2.8",
-        "nesbot/carbon": "^2.66"
+        "laravel/tinker": "^2.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -33,11 +31,6 @@
             "app/helpers.php"
         ]
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -50,12 +43,6 @@
             "@php artisan key:generate --ansi"
         ]
     },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
     "minimum-stability": "stable",
     "prefer-stable": true
 }
-
