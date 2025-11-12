@@ -1,1 +1,8 @@
-body { background: #F3E9D2; color: #000; font-family: Poppins, sans-serif; }
+:root{
+    --abc-gold:#C6A135;
+    --abc-black:#111111;
+    --abc-cream:#FAF8F0;
+    --abc-soft:#e9e2c9;
+    --abc-text:#0b0b0b;
+}
+/* ...everything down to footer{...} */
