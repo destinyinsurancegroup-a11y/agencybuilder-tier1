@@ -1,29 +1,27 @@
 <?php
-/**
- * Agency Builder CRM - Tier 1
- * Clean Index Entry Point (no layout.php dependency)
- */
 
-// Set timezone
-date_default_timezone_set('America/Detroit');
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
 
-// Define path constants
-$basePath = realpath(__DIR__ . '/../');
-$viewsPath = $basePath . '/resources/views/';
+/*
+|--------------------------------------------------------------------------
+| Laravel Entry Point — Agency Builder CRM
+|--------------------------------------------------------------------------
+| This is the correct Laravel front controller. It bootstraps the
+| application and passes all requests to the framework kernel.
+|
+*/
 
-// Get requested page (if any)
-$page = $_GET['page'] ?? 'dashboard';
+define('LARAVEL_START', microtime(true));
 
-// Sanitize input
-$page = preg_replace('/[^a-zA-Z0-9_-]/', '', $page);
+require __DIR__.'/../vendor/autoload.php';
 
-// Resolve path to the requested view
-$targetFile = $viewsPath . $page . '.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-// If the requested view exists, load it
-if (file_exists($targetFile)) {
-    include($targetFile);
-} else {
-    // Fallback to dashboard if page not found
-    include($viewsPath . 'dashboard.php');
-}
+$kernel = $app->make(Kernel::class);
+
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
+
+$kernel->terminate($request, $response);
