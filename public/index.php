@@ -1,18 +1,29 @@
 <?php
+/**
+ * Agency Builder CRM - Tier 1
+ * Clean Index Entry Point (no layout.php dependency)
+ */
 
-use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Http\Request;
+// Set timezone
+date_default_timezone_set('America/Detroit');
 
-define('LARAVEL_START', microtime(true));
+// Define path constants
+$basePath = realpath(__DIR__ . '/../');
+$viewsPath = $basePath . '/resources/views/';
 
-require __DIR__.'/../vendor/autoload.php';
+// Get requested page (if any)
+$page = $_GET['page'] ?? 'dashboard';
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+// Sanitize input
+$page = preg_replace('/[^a-zA-Z0-9_-]/', '', $page);
 
-$kernel = $app->make(Kernel::class);
+// Resolve path to the requested view
+$targetFile = $viewsPath . $page . '.php';
 
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
-
-$kernel->terminate($request, $response);
+// If the requested view exists, load it
+if (file_exists($targetFile)) {
+    include($targetFile);
+} else {
+    // Fallback to dashboard if page not found
+    include($viewsPath . 'dashboard.php');
+}
